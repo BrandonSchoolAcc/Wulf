@@ -6,7 +6,7 @@ class Player{
 
   public ArrayList<AnimalCard> hand = new ArrayList<AnimalCard>();
 
-  int health = 20;
+  public int health = 20;
   int power = 5;
 
   public Player(){

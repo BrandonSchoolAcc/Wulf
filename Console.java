@@ -10,18 +10,18 @@ class Console{
     this.field = field;
   }
 
-  public void drawBattlefield(int turn){
+  public void intro(){
+    System.out.println();
+  }
 
-    if(turn == 1){
-      System.out.println("Player 2");
-      System.out.println();
-      for(int i = 0; i < 5; i++){
-        switch(i){
-          case 0 & 4:
-            
-        }
-      }
-    }
+  public void drawBattlefield(){
+    System.out.println("  Computer");
+    System.out.println();
+    drawSide(1);
+    drawSide(0);
+    System.out.println();
+    System.out.println("  Player");
+      
   }
 
   public void takeTurn(int player){
@@ -66,4 +66,67 @@ class Console{
       players[player].hand.remove(cardInput-1);
     }
   }
+
+  private void drawSide(int side){
+
+    for(int i = 0; i < 4; i++){
+      System.out.print("_______  ");
+    }
+    System.out.println();
+
+    for(int i = 0; i < 4; i++){
+      if(field[side][i] == null){
+        System.out.print("|     |  ");
+      }
+      else{
+        String name = field[side][i].getName();
+        switch(name.length()){
+          case 1:
+            System.out.print("|  "+name+"  |  ");
+          case 2:
+            System.out.print("| "+name+"  |  ");
+          case 3:
+            System.out.print("| "+name+" |  ");
+          case 4:
+            System.out.print("|"+name+" |  ");
+          case 5:
+            System.out.print("|"+name+"|  ");
+          default:
+            name = name.substring(0, 5);
+            System.out.print("|"+name+"|  ");
+        }
+      }
+    }
+    System.out.println();
+
+    for(int i = 0; i < 4; i++){
+      if(field[side][i] != null){
+        System.out.print("|"
+        +field[side][i].attack+"   "
+        +field[side][i].health+"|  ");
+      }
+      else{
+        System.out.print("|  "+i+"  |  ");
+      }
+    }
+    System.out.println();
+
+    for(int i = 0; i < 4; i++){
+      if(field[side][i] != null){
+        System.out.print("|"
+        +field[side][i].power+"   "
+        +field[side][i].loyalty+"|  ");
+      }
+      else{
+        System.out.print("|     |  ");
+      }
+    }
+    System.out.println();
+
+    for(int i = 0; i < 4; i++){
+      System.out.print("_______  ");
+    }
+    System.out.println();
+  }
+
 }
