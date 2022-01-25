@@ -8,7 +8,7 @@ class AI extends Player{
     this.field = field;
   }
 
-  public int[] playCard(){
+  public void playCard(){
     int[] choice = new int[2];
     int counter = 0;
     AnimalCard[][] simField = field;
@@ -20,10 +20,12 @@ class AI extends Player{
       if(checkEnemy()){
         int eStats = 0;
         for(int i = 0; i < 4; i++){
-          int tStats = field[0][i].attack;
-          if(eStats < tStats && checkSpace(i)){
-            eStats = tStats;
-            pos = i;
+          if(field[0][i] != null){
+            int tStats = field[0][i].attack;
+            if(eStats < tStats && checkSpace(i)){
+              eStats = tStats;
+              pos = i;
+            }
           }
         }
       }
@@ -41,25 +43,32 @@ class AI extends Player{
       if(counter == hand.size()){
         choice = null;
       }
+      choice[0] = pos;
+      choice[1] = card;
     }
     else choice = null;
     
-    return choice;
+    if(choice != null){
+      field[1][choice[0]] = hand.get(choice[1]);
+      hand.remove(choice[1]);
+    }
   }
 
   private boolean simLoyaltyCheck(AnimalCard[][] simField){
     boolean check = true;
     int cardPower = 0;
     for(int i = 0; i < 4; i++){
-      if(simField[2][i] != null){
-        cardPower += simField[2][i].power;
+      if(simField[1][i] != null){
+        cardPower += simField[1][i].power;
       }
     }
     int powerBalance = cardPower - power;
     for(int i = 0; i < 4; i++){
-      if(powerBalance >= simField[2][i].loyalty){
-        check = false;
-        break;
+      if(simField[1][i] != null){
+        if(powerBalance >= simField[1][i].loyalty){
+          check = false;
+          break;
+        }
       }
     }
 
