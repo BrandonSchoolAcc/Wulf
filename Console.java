@@ -135,7 +135,7 @@ class Console{
       System.out.print("Choose position for animal: ");
       int posInput = scn.nextInt();
 
-      while(posInput < 1 || posInput > 4 || field[0][posInput] != null){
+      while(posInput < 1 || posInput > 4 || field[0][posInput-1] != null){
         System.out.print("Choose position for animal: ");
         posInput = scn.nextInt();
       }

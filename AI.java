@@ -16,11 +16,17 @@ class AI extends Player{
     if(checkFree()){
       int card = 0;
       int pos = 0;
+      for(int i = 0; i < 4; i++){
+        if(field[1][i] == null){
+          pos = i;
+          break;
+        }
+      }
       int xStats = 0;
       if(checkEnemy()){
         int eStats = 0;
         for(int i = 0; i < 4; i++){
-          if(field[0][i] != null){
+          if(field[0][i] != null && field[1][i] == null){
             int tStats = field[0][i].attack;
             if(eStats < tStats && checkSpace(i)){
               eStats = tStats;
