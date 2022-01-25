@@ -16,8 +16,8 @@ class Console{
   public void title(){
     System.out.println("Welcome to");
     System.out.println("__                __  "
-    +" _      _    _          "
-    +"________");
+    +" _      _    _           "
+    +"_______");
     System.out.println("\\ \\      __      / /  "
     +"| |    | |  | |         "
     +"| ______|");
@@ -60,13 +60,9 @@ class Console{
       System.out.println("power each round allowing you to play more powerfull creatures ");
       System.out.println("without them turning on you.");
       System.out.println();
-      System.out.println("This is what the game battlefield looks like:");
-      System.out.println();
-      drawBattlefield();
-      System.out.println();
       System.out.print("Would you like to play now? ");
       input = scn.next().toLowerCase().charAt(0);
-      if(input != 'y'){
+      if(!(input == 'y')){
         System.out.println("Too bad.");
         scn.nextLine();
       }
@@ -81,7 +77,7 @@ class Console{
       }
     }
     int AiCardPower = 0;
-    for(int i = 0; i < 0; i++){
+    for(int i = 0; i < 4; i++){
       if(field[1][i] != null){
         AiCardPower += field[1][i].power;
       }

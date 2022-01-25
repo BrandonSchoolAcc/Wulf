@@ -8,6 +8,15 @@ class AI extends Player{
     this.field = field;
   }
 
+  public void doSomething(){
+    AnimalCard[][] simField = field;
+    if(checkFree()){
+      int card;
+      int space;
+      
+    }
+  }
+
   public void playCard(){
     int[] choice = new int[2];
     int counter = 0;
@@ -84,7 +93,7 @@ class AI extends Player{
   private boolean checkFree(){
     boolean check = false;
     for(int i = 0; i < 4; i++){
-      if(field[0][i] == null){
+      if(field[1][i] == null){
         check = true;
         break;
       }

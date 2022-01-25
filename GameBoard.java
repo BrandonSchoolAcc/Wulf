@@ -56,6 +56,7 @@ class GameBoard{
         damageStage(0);
         scn.nextLine();
         player.power += 1;
+        player.addToHand();
         turn = 1;
       }
       else{
@@ -64,9 +65,9 @@ class GameBoard{
         loyaltyCheck(1);
         damageStage(1);
         scn.nextLine();
-        turn = 0;
         computer.power += 1;
-      
+        computer.addToHand();
+        turn = 0;
       }
     }
   }
@@ -171,6 +172,14 @@ class GameBoard{
   }
   private void deathCheck(int side, int pos){
     if(field[side][pos].health <= 0){
+      if(side == 0){
+        System.out.println("Your "
+        + field[side][pos].getName()+" has died!");
+      }
+      else{
+        System.out.println("Computer's "
+        + field[side][pos].getName()+" has died!");
+      }
       field[side][pos] = null;
     }
   }
@@ -182,7 +191,7 @@ class GameBoard{
       check = true;
     }
     else if(computer.health <= 0){
-      System.out.println("You won.");
+      System.out.println("You won!");
       check = true;
     }
     return check;
