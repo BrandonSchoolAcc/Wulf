@@ -4,11 +4,13 @@ import java.util.*;
 class Console{
 
   User player = new User();
+  AI computer;
   AnimalCard[][] field = new AnimalCard[2][4];
 
-  public Console(AnimalCard[][] field, User player){
+  public Console(AnimalCard[][] field, User player,AI computer){
     this.field = field;
     this.player = player;
+    this.computer = computer;
   }
 
   public void title(){
@@ -78,16 +80,25 @@ class Console{
         cardPower += field[0][i].power;
       }
     }
+    int AiCardPower = 0;
+    for(int i = 0; i < 0; i++){
+      if(field[1][i] != null){
+        AiCardPower += field[1][i].power;
+      }
+    }
     System.out.print("\033[H\033[2J");  
     System.out.flush();
     System.out.println();
-    System.out.println("             Computer");
+    System.out.println("  "+computer.health+"\\"+computer.tHealth
+      +"       Computer       "
+      + AiCardPower +"\\"+ computer.power);
     System.out.println();
     drawSide(1);
     drawSide(0);
     System.out.println();
-    System.out.println("              Player      "
-    + cardPower +"\\" + player.power);
+    System.out.println("  "+player.health+"\\"+player.tHealth
+      +"        Player        "
+      + cardPower +"\\" + player.power);
       
   }
 
@@ -124,7 +135,7 @@ class Console{
       System.out.print("Choose position for animal: ");
       int posInput = scn.nextInt();
 
-      while(posInput < 1 || posInput > 4){
+      while(posInput < 1 || posInput > 4 || field[0][posInput] != null){
         System.out.print("Choose position for animal: ");
         posInput = scn.nextInt();
       }

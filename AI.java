@@ -89,7 +89,7 @@ class AI extends Player{
   private boolean checkEnemy(){
     boolean enemy = false;
     for(int i = 0; i < 4; i++){
-      if(field[0][i] != null){
+      if(field[0][i] != null && field[1][i] == null){
         enemy = true;
         break;
       }

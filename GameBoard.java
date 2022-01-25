@@ -5,7 +5,7 @@ class GameBoard{
   AnimalCard[][] field = new AnimalCard[2][4];
   User player = new User();
   AI computer = new AI(field);
-  Console myConsole = new Console(field, player);
+  Console myConsole = new Console(field, player, computer);
   AnimalCard[] starter = new AnimalCard[]{
     new AnimalCard("Rat",1,1,1,2),
     new AnimalCard("Rat",1,1,1,2),
@@ -26,8 +26,8 @@ class GameBoard{
     new AnimalCard("Turtle",1,5,2,5),
     new AnimalCard("Turtle",1,5,2,5),
     new AnimalCard("Turtle",1,5,2,5),
-    new AnimalCard("Bear",6,7,8,4),
-    new AnimalCard("Bear",6,7,8,4)
+    new AnimalCard("Bear",6,7,8,3),
+    new AnimalCard("Bear",6,7,8,3)
     };
   AnimalCard[] AiStarter = starter;
 
@@ -55,6 +55,7 @@ class GameBoard{
         loyaltyCheck(0);
         damageStage(0);
         scn.nextLine();
+        player.power += 1;
         turn = 1;
       }
       else{
@@ -64,6 +65,7 @@ class GameBoard{
         damageStage(1);
         scn.nextLine();
         turn = 0;
+        computer.power += 1;
       
       }
     }
@@ -75,32 +77,32 @@ class GameBoard{
         if(turn == 0){
           if(field[0][i].loyal){
             if(checkSpace(1,i)){
-              field[1][i].health -= field[0][i].attack;
-              deathCheck(1,i);
+              field[1][i].health -= field[turn][i].attack;
               System.out.println("Your "
-              +field[0][i].getName()+" attacks Computer's " + field[1][i].getName()+
+              +field[turn][i].getName()+" attacks Computer's " + field[1][i].getName()+
               "!");
+              deathCheck(1,i);
             }
             else{
               computer.health -= field[0][i].attack;
               System.out.println("Your "
-              +field[0][i].getName()+" attacks Computer directly!");
+              +field[turn][i].getName()+" attacks Computer directly!");
             }
           }
           else{
-            player.health -= field[0][i].attack;
+            player.health -= field[turn][i].attack;
             System.out.println("Your "
               +field[0][i].getName()+" attacks You directly!");
           }
         }
         else{
-          if(field[1][i].loyal){
-            if(checkSpace(0,i) && field[1][i] != null){
-              field[0][i].health -= field[1][i].attack;
-              deathCheck(0,i);
+          if(field[turn][i].loyal){
+            if(checkSpace(0,i) && field[turn][i] != null){
+              field[0][i].health -= field[turn][i].attack;
               System.out.println("Computer's "
-              +field[1][i].getName()+" attacks Your " + field[0][i].getName()+
+              +field[turn][i].getName()+" attacks Your " + field[0][i].getName()+
               "!");
+              deathCheck(0,i);
             }
             else{
               player.health -= field[1][i].attack;
