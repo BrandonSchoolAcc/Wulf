@@ -7,29 +7,51 @@ class GameBoard{
   AI computer = new AI(field);
   Console myConsole = new Console(field, player, computer);
   AnimalCard[] starter = new AnimalCard[]{
-    new AnimalCard("Rat",1,1,1,2),
-    new AnimalCard("Rat",1,1,1,2),
-    new AnimalCard("Rat",1,1,1,2),
-    new AnimalCard("Cat",2,2,3,4),
-    new AnimalCard("Cat",2,2,3,4),
-    new AnimalCard("Cat",2,2,3,4),
-    new AnimalCard("Wolf",4,3,4,5),
-    new AnimalCard("Wolf",4,3,4,5),
-    new AnimalCard("Wolf",4,3,4,5),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Cat",2,2,3,2),
+    new AnimalCard("Cat",2,2,3,2),
+    new AnimalCard("Cat",2,2,3,2),
+    new AnimalCard("Wolf",4,3,4,4),
+    new AnimalCard("Wolf",4,3,4,4),
+    new AnimalCard("Wolf",4,3,4,4),
     new AnimalCard("Alpha",5,4,6,5),
     new AnimalCard("Dog",3,2,3,8),
     new AnimalCard("Dog",3,2,3,8),
     new AnimalCard("Dog",3,2,3,8),
-    new AnimalCard("Hawk",3,1,3,6),
-    new AnimalCard("Hawk",3,1,3,6),
-    new AnimalCard("Hawk",3,1,3,6),
-    new AnimalCard("Turtle",1,5,2,5),
-    new AnimalCard("Turtle",1,5,2,5),
-    new AnimalCard("Turtle",1,5,2,5),
-    new AnimalCard("Bear",6,7,8,3),
-    new AnimalCard("Bear",6,7,8,3)
+    new AnimalCard("Hawk",3,1,3,5),
+    new AnimalCard("Hawk",3,1,3,5),
+    new AnimalCard("Hawk",3,1,3,5),
+    new AnimalCard("Turtle",1,6,2,4),
+    new AnimalCard("Turtle",1,6,2,4),
+    new AnimalCard("Turtle",1,6,2,4),
+    new AnimalCard("Bear",6,8,8,3),
+    new AnimalCard("Bear",6,8,8,3)
     };
-  AnimalCard[] AiStarter = starter;
+  AnimalCard[] AiStarter = new AnimalCard[]{
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Cat",2,2,3,2),
+    new AnimalCard("Cat",2,2,3,2),
+    new AnimalCard("Cat",2,2,3,2),
+    new AnimalCard("Wolf",4,3,4,4),
+    new AnimalCard("Wolf",4,3,4,4),
+    new AnimalCard("Wolf",4,3,4,4),
+    new AnimalCard("Alpha",5,4,6,5),
+    new AnimalCard("Dog",3,2,3,8),
+    new AnimalCard("Dog",3,2,3,8),
+    new AnimalCard("Dog",3,2,3,8),
+    new AnimalCard("Hawk",3,1,3,5),
+    new AnimalCard("Hawk",3,1,3,5),
+    new AnimalCard("Hawk",3,1,3,5),
+    new AnimalCard("Turtle",1,6,2,4),
+    new AnimalCard("Turtle",1,6,2,4),
+    new AnimalCard("Turtle",1,6,2,4),
+    new AnimalCard("Bear",6,8,8,3),
+    new AnimalCard("Bear",6,8,8,3)
+  };
 
   public GameBoard(){
     Collections.addAll(player.deck, starter);
@@ -60,7 +82,7 @@ class GameBoard{
         turn = 1;
       }
       else{
-        computer.playCard();
+        computer.playCard(field);
         myConsole.drawBattlefield();
         loyaltyCheck(1);
         damageStage(1);
@@ -77,7 +99,7 @@ class GameBoard{
       if(field[turn][i] != null){
         if(turn == 0){
           if(field[0][i].loyal){
-            if(checkSpace(1,i)){
+            if(field[1][i] != null){
               field[1][i].health -= field[turn][i].attack;
               System.out.println("Your "
               +field[turn][i].getName()+" attacks Computer's " + field[1][i].getName()+
@@ -98,7 +120,7 @@ class GameBoard{
         }
         else{
           if(field[turn][i].loyal){
-            if(checkSpace(0,i) && field[turn][i] != null){
+            if(field[0][i] != null){
               field[0][i].health -= field[turn][i].attack;
               System.out.println("Computer's "
               +field[turn][i].getName()+" attacks Your " + field[0][i].getName()+
@@ -163,13 +185,7 @@ class GameBoard{
     }
   }
 
-  private boolean checkSpace(int side, int pos){
-    boolean check = false;
-    if(field[side][pos] != null){
-      check = true;
-    }
-    return check;
-  }
+  
   private void deathCheck(int side, int pos){
     if(field[side][pos].health <= 0){
       if(side == 0){
