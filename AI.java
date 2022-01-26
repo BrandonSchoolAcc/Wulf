@@ -7,7 +7,7 @@ class AI extends Player{
   }
 
   public void playCard(AnimalCard[][] field){
-    AnimalCard[][] simField = field.clone();
+    AnimalCard[][] simField = copyField(field);
     if(checkFreeSpace(field)){
       int card = hand.size() + 1;
       int space = 0;
@@ -36,8 +36,9 @@ class AI extends Player{
         simField[1][space] = hand.get(i);
         if(bestStats < tempStats && simLoyaltyCheck(simField)){
           bestStats = tempStats;
+          card = i;
         }
-        simField[1][space] = null;
+        simField = copyField(field);
       }
 
       if(card != hand.size() + 1){
@@ -61,7 +62,7 @@ class AI extends Player{
       if(simField[1][i] != null){
         if(powerBalance >= simField[1][i].loyalty){
           check = false;
-
+          break;
         }
       }
     }
@@ -88,6 +89,24 @@ class AI extends Player{
       }
     }
     return enemy;
+  }
+
+  private AnimalCard[][] copyField(AnimalCard[][] field){
+    AnimalCard[][] tempField = new AnimalCard[2][4];
+    for(int i = 0; i < 2; i++){
+      for(int j = 0; j < 4; j++){
+        if(field[i][j] != null){
+          tempField[i][j] = new AnimalCard(
+            field[i][j].getName(),
+            field[i][j].attack,
+            field[i][j].health,
+            field[i][j].power,
+            field[i][j].loyalty);
+        }
+      }
+    }
+    return tempField;
+
   }
 
 }
