@@ -105,7 +105,7 @@ class Console{
     char input = scn.next().charAt(0);
     while(!(input == 'p' || input == 'e')){
       System.out.print("(P)lay card or (E)nd turn: ");
-      input = scn.next().charAt(0);
+      input = scn.next().toLowerCase().charAt(0);
     }
 
     if(input == 'p'){
