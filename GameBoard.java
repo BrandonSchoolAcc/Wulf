@@ -29,6 +29,32 @@ class GameBoard{
     new AnimalCard("Bear",6,8,8,3),
     new AnimalCard("Bear",6,8,8,3)
     };
+  AnimalCard[] ratman = new AnimalCard[]{
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1)
+  };
   AnimalCard[] AiStarter = new AnimalCard[]{
     new AnimalCard("Rat",1,1,1,1),
     new AnimalCard("Rat",1,1,1,1),
