@@ -1,4 +1,4 @@
-class AnimalCard{
+class AnimalCard extends Card{
 
   private String name;
   public int attack;
@@ -9,6 +9,7 @@ class AnimalCard{
 
   public AnimalCard(String name, int attack, int health, int power, int loyalty){
 
+    super(name);
     this.name = name;
     this.attack = attack;
     this.health = health;

@@ -6,6 +6,7 @@ class Console{
   User player = new User();
   AI computer;
   AnimalCard[][] field = new AnimalCard[2][4];
+  AnimalCard aCard = new AnimalCard("Blank",0,0,0,0);
 
   public Console(AnimalCard[][] field, User player,AI computer){
     this.field = field;
@@ -110,12 +111,19 @@ class Console{
 
     if(input == 'p'){
       for(int i = 0; i < player.hand.size(); i++){
+        if(player.hand.get(i).getClass().equals(aCard.getClass())){
         System.out.println(i+1+". "
-        +player.hand.get(i).getName()+" "
-        +player.hand.get(i).attack+" attack "
-        +player.hand.get(i).health+" health "
-        +player.hand.get(i).power+" power "
-        +player.hand.get(i).loyalty+" loyalty.");
+        +((AnimalCard) player.hand.get(i)).getName()+" "
+        +((AnimalCard) player.hand.get(i)).attack+" attack "
+        +((AnimalCard) player.hand.get(i)).health+" health "
+        +((AnimalCard) player.hand.get(i)).power+" power "
+        +((AnimalCard) player.hand.get(i)).loyalty+" loyalty.");
+      }
+      else{
+        System.out.println(i+1+". "
+        +player.hand.get(i).name + " "
+        +((ItemCard) player.hand.get(i)).effectDesc());
+      }
       }
 
       System.out.println();
@@ -136,7 +144,7 @@ class Console{
         posInput = scn.nextInt();
       }
     
-      field[0][posInput-1] = player.hand.get(cardInput-1);
+      field[0][posInput-1] = ((AnimalCard)player.hand.get(cardInput-1));
       player.hand.remove(cardInput-1);
     }
   }

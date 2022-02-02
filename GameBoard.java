@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 class GameBoard{
@@ -82,6 +83,9 @@ class GameBoard{
   public GameBoard(){
     Collections.addAll(player.deck, starter);
     Collections.addAll(computer.deck, AiStarter);
+    ArrayList<Player> players = new ArrayList<Player>();
+    players.add(player);
+    players.add(computer);
   }
 
   public void playGame(){

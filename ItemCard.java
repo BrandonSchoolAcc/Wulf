@@ -1,12 +1,20 @@
-class ItemCard{
+class ItemCard extends Card{
 
-  String name;
   String effect;
 
   public ItemCard(String name, String effect){
-
-    this.name = name;
+    super(name);
     this.effect = effect;
 
+  }
+
+  public void effectDesc(){
+    switch(effect){
+      case "test":
+        System.out.print("test");
+      default:
+        System.out.print("INVALID");
+        break;
+    }
   }
 }

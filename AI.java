@@ -1,11 +1,15 @@
+
 import java.util.*;
 
 class AI extends Player{
 
+  public ArrayList<AnimalCard> deck = new ArrayList<AnimalCard>();
+
+  public ArrayList<AnimalCard> hand = new ArrayList<AnimalCard>();
+
   public AI(AnimalCard[][] field){
 
   }
-
   public void playCard(AnimalCard[][] field){
     AnimalCard[][] simField = copyField(field);
     if(checkFreeSpace(field)){
@@ -108,5 +112,4 @@ class AI extends Player{
     return tempField;
 
   }
-
 }

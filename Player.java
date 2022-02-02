@@ -2,9 +2,9 @@ import java.util.*;
 
 class Player{
 
-  public ArrayList<AnimalCard> deck = new ArrayList<AnimalCard>();
+  public ArrayList<Card> deck = new ArrayList<Card>();
 
-  public ArrayList<AnimalCard> hand = new ArrayList<AnimalCard>();
+  public ArrayList<Card> hand = new ArrayList<Card>();
 
   public int tHealth = 20;
   public int health = tHealth;
