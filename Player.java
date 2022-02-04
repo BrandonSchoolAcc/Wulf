@@ -9,6 +9,8 @@ class Player{
   public int tHealth = 20;
   public int health = tHealth;
   public int power = 5;
+  public int bait = 0;
+  public int maxBait = 3;
 
   public Player(){
     
@@ -19,12 +21,20 @@ class Player{
   }
 
   public void addToHand(){
-      hand.add(deck.get(0));
-      deck.remove(0);
+      if(deck.size() > 0){
+        hand.add(deck.get(0));
+        deck.remove(0);
+      }
   }
 
   public void takeDamage(int damage){
     health -= damage;
+  }
+
+  public void checkBait(){
+    if(bait > maxBait){
+      bait = maxBait;
+    }
   }
   
 }

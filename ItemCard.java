@@ -8,13 +8,12 @@ class ItemCard extends Card{
 
   }
 
-  public void effectDesc(){
+  public String effectDesc(){
     switch(effect){
       case "test":
-        System.out.print("test");
+        return "test";
       default:
-        System.out.print("INVALID");
-        break;
+        return "INVALID";
     }
   }
 }
