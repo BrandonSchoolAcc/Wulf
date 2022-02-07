@@ -73,18 +73,18 @@ class Console {
     System.out.print("\033[H\033[2J");
     System.out.flush();
     System.out.println();
-    System.out.println("  " + computer.health + "\\" + computer.tHealth + "       Computer       " + AiCardPower + "\\"
-        + computer.power);
+    System.out.println("  " + computer.health + "\\" + computer.tHealth + "       Computer    " + AiCardPower + "\\" + computer.power + "  " + computer.bait + "\\" + computer.maxBait);
     System.out.println();
     drawSide(1);
     drawSide(0);
     System.out.println();
     System.out.println(
-        "  " + player.health + "\\" + player.tHealth + "        Player        " + cardPower + "\\" + player.power);
+        "  " + player.health + "\\" + player.tHealth + "        Player     " + cardPower + "\\" + player.power + "  " + player.bait + "\\" + player.maxBait);
 
   }
 
   public void takeTurn() {
+    drawBattlefield();
     Scanner scn = new Scanner(System.in);
     System.out.println();
     System.out.print("(P)lay card or (E)nd turn: ");
@@ -95,6 +95,7 @@ class Console {
     }
 
     while (input == 'p') {
+      drawBattleField();
       boolean dontSkip = true;
       for (int i = 0; i < player.hand.size(); i++) {
         if (player.hand.get(i) instanceof AnimalCard) {
