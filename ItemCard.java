@@ -1,7 +1,7 @@
 import java.util.*;
 class ItemCard extends Card{
   
-  enum Effects{
+  public enum Effects{
     KILL_OWN,
     CULL,
     RAT_BUFF,

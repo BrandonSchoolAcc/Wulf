@@ -1,8 +1,6 @@
 
 import java.util.*;
 
-import ItemCard.Effects;
-
 class GameBoard{
 
   AnimalCard[][] field = new AnimalCard[2][4];
@@ -31,14 +29,14 @@ class GameBoard{
     new AnimalCard("Turtle",1,6,2,4),
     new AnimalCard("Bear",6,8,8,3),
     new AnimalCard("Bear",6,8,8,3),
-    new ItemCard("Mercy Kill", Effects.KILL_OWN),
-    new ItemCard("Culling", Effects.CULL),
-    new ItemCard("Plague", Effects.RAT_BUFF),
-    new ItemCard("Betrayal", Effects.FORCE_TURN),
-    new ItemCard("Adrenaline", Effects.HEAL),
-    new ItemCard("Exile", Effects.RETURN_TO_DECK),
-    new ItemCard("Chum", Effects.ADD_BAIT),
-    new ItemCard("Steroids", Effects.ADD_ATTACK)
+    new ItemCard("Mercy Kill", ItemCard.Effects.KILL_OWN),
+    new ItemCard("Culling", ItemCard.Effects.CULL),
+    new ItemCard("Plague", ItemCard.Effects.RAT_BUFF),
+    new ItemCard("Betrayal", ItemCard.Effects.FORCE_TURN),
+    new ItemCard("Adrenaline", ItemCard.Effects.HEAL),
+    new ItemCard("Exile", ItemCard.Effects.RETURN_TO_DECK),
+    new ItemCard("Chum", ItemCard.Effects.ADD_BAIT),
+    new ItemCard("Steroids", ItemCard.Effects.ADD_ATTACK)
     };
   AnimalCard[] ratman = new AnimalCard[]{
     new AnimalCard("Rat",1,1,1,1),
@@ -111,6 +109,7 @@ class GameBoard{
     int turn = 0;
     while(!winCheck()){
       if(turn == 0){
+        player.bait += 1;
         myConsole.takeTurn();
         myConsole.drawBattlefield();
         loyaltyCheck(0);
@@ -121,6 +120,7 @@ class GameBoard{
         turn = 1;
       }
       else{
+        computer.bait += 1;
         computer.playCard(field);
         myConsole.drawBattlefield();
         loyaltyCheck(1);

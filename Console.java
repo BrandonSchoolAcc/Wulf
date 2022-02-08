@@ -73,13 +73,14 @@ class Console {
     System.out.print("\033[H\033[2J");
     System.out.flush();
     System.out.println();
-    System.out.println("  " + computer.health + "\\" + computer.tHealth + "       Computer    " + AiCardPower + "\\" + computer.power + "  " + computer.bait + "\\" + computer.maxBait);
+    System.out.println("  " + computer.health + "\\" + computer.tHealth + "       Computer    " + AiCardPower + "\\"
+        + computer.power + "  " + computer.bait + "\\" + computer.maxBait);
     System.out.println();
     drawSide(1);
     drawSide(0);
     System.out.println();
-    System.out.println(
-        "  " + player.health + "\\" + player.tHealth + "        Player     " + cardPower + "\\" + player.power + "  " + player.bait + "\\" + player.maxBait);
+    System.out.println("  " + player.health + "\\" + player.tHealth + "        Player     " + cardPower + "\\"
+        + player.power + "  " + player.bait + "\\" + player.maxBait);
 
   }
 
@@ -95,7 +96,7 @@ class Console {
     }
 
     while (input == 'p') {
-      drawBattleField();
+      drawBattlefield();
       boolean dontSkip = true;
       for (int i = 0; i < player.hand.size(); i++) {
         if (player.hand.get(i) instanceof AnimalCard) {
@@ -117,9 +118,9 @@ class Console {
         System.out.print("Choose card to play: ");
         cardInput = scn.nextInt();
       }
-      while (player.hand.get(cardInput) instanceof AnimalCard && player.bait == 0 && dontSkip) {
+
+      if (player.hand.get(cardInput) instanceof AnimalCard && player.bait == 0) {
         System.out.println("You have no bait to lure the animal!");
-        dontSkip = false;
       }
 
       if (player.hand.get(cardInput) instanceof AnimalCard && dontSkip) {
@@ -131,13 +132,20 @@ class Console {
           System.out.print("Choose position for animal: ");
           posInput = scn.nextInt();
         }
-
-        field[0][posInput - 1] = ((AnimalCard) player.hand.get(cardInput - 1));
-        player.hand.remove(cardInput - 1);
+        try{
+          field[0][posInput - 1] = ((AnimalCard) player.hand.get(cardInput - 1));
+          player.hand.remove(cardInput - 1);
+          player.bait -= 1;
+        }finally{
+          
+        }
+        
       }
       else{
-        ((ItemCard) player.hand.get(cardInput)).playEvent(field);
-        player.hand.remove(cardInput - 1);
+        try{
+          ((ItemCard) player.hand.get(cardInput)).playEvent(field);
+          player.hand.remove(cardInput - 1);
+        }finally{}
       }
       System.out.print("(P)lay card or (E)nd turn: ");
       input = scn.next().toLowerCase().charAt(0);
