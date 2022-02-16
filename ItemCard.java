@@ -129,11 +129,11 @@ class ItemCard extends Card{
         }
         if(sideChoice == 'y'){
           player.deck.add(field[0][returnChoice-1]);
-          field[0][returnChoice] = null;
+          field[0][returnChoice-1] = null;
         }
         else{
           computer.deck.add(field[1][returnChoice-1]);
-          field[1][returnChoice] = null;
+          field[1][returnChoice-1] = null;
         }
         break;
       case ADD_BAIT:
