@@ -45,9 +45,9 @@ class AI extends Player{
         }
         simField = copyField(field);
       }
-
-      if(card < hand.size() + 1){
-        field[1][space] = hand.get(card);
+      int basic = hand.size() + 1;
+      if(card < basic){
+        field[1][space] = ((AnimalCard) hand.get(card));
         hand.remove(card);
         bait -= 1;
       }
@@ -113,5 +113,13 @@ class AI extends Player{
     }
     return tempField;
 
+  }
+
+  @Override
+  public void addToHand(){
+      if(deck.size() > 0){
+        hand.add(deck.get(0));
+        deck.remove(0);
+      }
   }
 }
