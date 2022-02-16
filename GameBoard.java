@@ -30,13 +30,19 @@ class GameBoard{
     new AnimalCard("Bear",6,8,8,3),
     new AnimalCard("Bear",6,8,8,3),
     new ItemCard("Mercy Kill", ItemCard.Effects.KILL_OWN),
+    new ItemCard("Mercy Kill", ItemCard.Effects.KILL_OWN),
     new ItemCard("Culling", ItemCard.Effects.CULL),
     new ItemCard("Plague", ItemCard.Effects.RAT_BUFF),
     new ItemCard("Betrayal", ItemCard.Effects.FORCE_TURN),
     new ItemCard("Adrenaline", ItemCard.Effects.HEAL),
+    new ItemCard("Adrenaline", ItemCard.Effects.HEAL),
     new ItemCard("Exile", ItemCard.Effects.RETURN_TO_DECK),
     new ItemCard("Chum", ItemCard.Effects.ADD_BAIT),
-    new ItemCard("Steroids", ItemCard.Effects.ADD_ATTACK)
+    new ItemCard("Steroids", ItemCard.Effects.ADD_ATTACK),
+    new ItemCard("Chum", ItemCard.Effects.ADD_BAIT),
+    new ItemCard("Steroids", ItemCard.Effects.ADD_ATTACK),
+    new ItemCard("Search", ItemCard.Effects.ADD_CARDS),
+    new ItemCard("Search", ItemCard.Effects.ADD_CARDS)
     };
   AnimalCard[] ratman = new AnimalCard[]{
     new AnimalCard("Rat",1,1,1,1),

@@ -9,7 +9,8 @@ class ItemCard extends Card{
     HEAL,
     RETURN_TO_DECK,
     ADD_BAIT,
-    ADD_ATTACK
+    ADD_ATTACK,
+    ADD_CARDS
   }
 
   Effects effect;
@@ -38,6 +39,8 @@ class ItemCard extends Card{
         return "give yourself 1 bait.";
       case ADD_ATTACK:
         return "give one of your animals 1 attack.";
+      case ADD_CARDS:
+        return "draw two cards from your deck";
       default:
         return "INVALID";
     }
@@ -81,7 +84,7 @@ class ItemCard extends Card{
           System.out.print("Choose opponent's animal to turn: ");
           choices = scn.nextInt();
         }
-        field[1][choices].loyal = false;
+        field[1][choices-1].loyal = false;
         break;
       case HEAL:
         System.out.print("Choose animal to heal: ");
@@ -115,7 +118,7 @@ class ItemCard extends Card{
           sideChoice = scn.next().toLowerCase().charAt(0);
         }
         System.out.print("Which animal to return to deck? ");
-        char returnChoice = scn.next().toLowerCase().charAt(0);
+        int returnChoice = scn.nextInt();
         int sideInt = 0;
         if(sideChoice == 'o'){
           sideInt = 1;
@@ -146,6 +149,9 @@ class ItemCard extends Card{
         }
         field[0][addChoice-1].attack += 1;
         break;
+      case ADD_CARDS:
+        player.addToHand();
+        player.addToHand();
     }
   }
 }
