@@ -96,7 +96,6 @@ class Console {
     }
 
     while (input == 'p') {
-      drawBattlefield();
       boolean dontSkip = true;
       for (int i = 0; i < player.hand.size(); i++) {
         if (player.hand.get(i) instanceof AnimalCard) {
@@ -119,11 +118,13 @@ class Console {
         cardInput = scn.nextInt();
       }
 
-      if (player.hand.get(cardInput) instanceof AnimalCard && player.bait == 0) {
+      if (player.hand.get(cardInput-1) instanceof AnimalCard && player.bait == 0) {
         System.out.println("You have no bait to lure the animal!");
+        scn.nextLine();
+        dontSkip = false;
       }
 
-      if (player.hand.get(cardInput) instanceof AnimalCard && dontSkip) {
+      if (player.hand.get(cardInput-1) instanceof AnimalCard && dontSkip) {
         System.out.println();
         System.out.print("Choose position for animal: ");
         int posInput = scn.nextInt();
@@ -141,12 +142,14 @@ class Console {
         }
         
       }
-      else{
+      else if(player.hand.get(cardInput-1) instanceof ItemCard){
         try{
-          ((ItemCard) player.hand.get(cardInput)).playEvent(field);
+          ((ItemCard) player.hand.get(cardInput-1)).playEvent(field, computer, player);
           player.hand.remove(cardInput - 1);
         }finally{}
       }
+      drawBattlefield();
+      System.out.println();
       System.out.print("(P)lay card or (E)nd turn: ");
       input = scn.next().toLowerCase().charAt(0);
     }

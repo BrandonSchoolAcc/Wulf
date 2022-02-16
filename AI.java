@@ -12,8 +12,9 @@ class AI extends Player{
   }
   public void playCard(AnimalCard[][] field){
     AnimalCard[][] simField = copyField(field);
-    if(checkFreeSpace(field)){
-      int card = hand.size() + 1;
+    while(bait > 0 && checkFreeSpace(field)){
+      //int card = hand.size() + 1;
+      int card = 1;
       int space = 0;
       for(int i = 0; i < 4; i++){
         if(field[1][i] == null){
@@ -45,11 +46,12 @@ class AI extends Player{
         simField = copyField(field);
       }
 
-      if(card != hand.size() + 1){
+      if(card < hand.size() + 1){
         field[1][space] = hand.get(card);
         hand.remove(card);
+        bait -= 1;
       }
-
+      else break;
     }
   }
 
@@ -87,7 +89,7 @@ class AI extends Player{
   private boolean checkEnemy(AnimalCard[][] field){
     boolean enemy = false;
     for(int i = 0; i < 4; i++){
-      if(!(field[0][i] == null) && field[1][i] == null){
+      if(field[0][i] != null && field[1][i] == null){
         enemy = true;
         break;
       }
