@@ -1,7 +1,8 @@
-class AnimalCard{
+class AnimalCard extends Card{
 
   private String name;
   public int attack;
+  public int startHealth;
   public int health;
   public int power;
   public int loyalty;
@@ -9,8 +10,10 @@ class AnimalCard{
 
   public AnimalCard(String name, int attack, int health, int power, int loyalty){
 
+    super(name);
     this.name = name;
     this.attack = attack;
+    this.startHealth = health;
     this.health = health;
     this.power = power;
     this.loyalty = loyalty;

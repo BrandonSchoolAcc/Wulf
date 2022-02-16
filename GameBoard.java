@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 class GameBoard{
@@ -6,7 +7,7 @@ class GameBoard{
   User player = new User();
   AI computer = new AI(field);
   Console myConsole = new Console(field, player, computer);
-  AnimalCard[] starter = new AnimalCard[]{
+  Card[] starter = new Card[]{
     new AnimalCard("Rat",1,1,1,1),
     new AnimalCard("Rat",1,1,1,1),
     new AnimalCard("Rat",1,1,1,1),
@@ -27,8 +28,42 @@ class GameBoard{
     new AnimalCard("Turtle",1,6,2,4),
     new AnimalCard("Turtle",1,6,2,4),
     new AnimalCard("Bear",6,8,8,3),
-    new AnimalCard("Bear",6,8,8,3)
+    new AnimalCard("Bear",6,8,8,3),
+    new ItemCard("Mercy Kill", ItemCard.Effects.KILL_OWN),
+    new ItemCard("Culling", ItemCard.Effects.CULL),
+    new ItemCard("Plague", ItemCard.Effects.RAT_BUFF),
+    new ItemCard("Betrayal", ItemCard.Effects.FORCE_TURN),
+    new ItemCard("Adrenaline", ItemCard.Effects.HEAL),
+    new ItemCard("Exile", ItemCard.Effects.RETURN_TO_DECK),
+    new ItemCard("Chum", ItemCard.Effects.ADD_BAIT),
+    new ItemCard("Steroids", ItemCard.Effects.ADD_ATTACK)
     };
+  AnimalCard[] ratman = new AnimalCard[]{
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1),
+    new AnimalCard("Rat",1,1,1,1)
+  };
   AnimalCard[] AiStarter = new AnimalCard[]{
     new AnimalCard("Rat",1,1,1,1),
     new AnimalCard("Rat",1,1,1,1),
@@ -56,6 +91,9 @@ class GameBoard{
   public GameBoard(){
     Collections.addAll(player.deck, starter);
     Collections.addAll(computer.deck, AiStarter);
+    ArrayList<Player> players = new ArrayList<Player>();
+    players.add(player);
+    players.add(computer);
   }
 
   public void playGame(){
@@ -71,7 +109,7 @@ class GameBoard{
     int turn = 0;
     while(!winCheck()){
       if(turn == 0){
-        myConsole.drawBattlefield();
+        player.bait += 1;
         myConsole.takeTurn();
         myConsole.drawBattlefield();
         loyaltyCheck(0);
@@ -82,6 +120,7 @@ class GameBoard{
         turn = 1;
       }
       else{
+        computer.bait += 1;
         computer.playCard(field);
         myConsole.drawBattlefield();
         loyaltyCheck(1);

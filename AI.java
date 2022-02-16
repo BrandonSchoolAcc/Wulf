@@ -1,15 +1,20 @@
+
 import java.util.*;
 
 class AI extends Player{
 
+  public ArrayList<AnimalCard> deck = new ArrayList<AnimalCard>();
+
+  public ArrayList<AnimalCard> hand = new ArrayList<AnimalCard>();
+
   public AI(AnimalCard[][] field){
 
   }
-
   public void playCard(AnimalCard[][] field){
     AnimalCard[][] simField = copyField(field);
-    if(checkFreeSpace(field)){
-      int card = hand.size() + 1;
+    while(bait > 0 && checkFreeSpace(field)){
+      //int card = hand.size() + 1;
+      int card = 1;
       int space = 0;
       for(int i = 0; i < 4; i++){
         if(field[1][i] == null){
@@ -40,12 +45,13 @@ class AI extends Player{
         }
         simField = copyField(field);
       }
-
-      if(card != hand.size() + 1){
-        field[1][space] = hand.get(card);
+      int basic = hand.size() + 1;
+      if(card < basic){
+        field[1][space] = ((AnimalCard) hand.get(card));
         hand.remove(card);
+        bait -= 1;
       }
-
+      else break;
     }
   }
 
@@ -83,7 +89,7 @@ class AI extends Player{
   private boolean checkEnemy(AnimalCard[][] field){
     boolean enemy = false;
     for(int i = 0; i < 4; i++){
-      if(!(field[0][i] == null) && field[1][i] == null){
+      if(field[0][i] != null && field[1][i] == null){
         enemy = true;
         break;
       }
@@ -109,4 +115,11 @@ class AI extends Player{
 
   }
 
+  @Override
+  public void addToHand(){
+      if(deck.size() > 0){
+        hand.add(deck.get(0));
+        deck.remove(0);
+      }
+  }
 }
